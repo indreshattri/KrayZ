@@ -12,17 +12,40 @@ app.get('/game', function(req, res){
 
 app.use(require('express').static('public'));
 
+var count = 1;
+
+
+
 
 io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
+
+
+	socket.on('start', function(msg){
+	  io.emit('start', count++);
+	});
+
+  	socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
+
 	socket.on('mouse moved', function(angle){
+
 	    io.emit('mouse moved', angle);
   });
+
+	socket.on('key angle', function(angle){
+
+	    io.emit('key angle', angle);
+  });
+
 	socket.on('mouse pressed', function(mouseFlag){
 	    io.emit('mouse pressed', mouseFlag);
   });
+
+		socket.on('key pressed', function(keyFlag){
+		    io.emit('key pressed', keyFlag);
+	  });
+
 		socket.on('obstacle1', function(x,y,r,speedX,speedY){
 		    io.emit('obstacle1', x,y,r,speedX,speedY);
 	  });
