@@ -1,2 +1,2 @@
 # KrayZ
-A Multiplayer game using NodeJs
+A Multiplayer game built in Javascript, Html5-canvas, CSS and NodeJs.
